@@ -1,5 +1,4 @@
-const works = await fetch("http://localhost:5678/api/works");
-const projets = await works.json();
+const projets = await fetch("http://localhost:5678/api/works").then(proj => proj.json());
 
 const categories = ["Tous"];
 
@@ -48,4 +47,26 @@ for (let categorie of setCategories) {
   });
 
   filtres.appendChild(buttonElement);
+}
+
+const adminPage = () => {
+  const banniere = document.querySelector(".banniere");
+  banniere.classList.toggle("hidden");
+  const loginLink = document.querySelector(".login-link");
+  loginLink.setAttribute("href", "./index.html");
+  loginLink.innerHTML = "<li>logout</li>";
+  loginLink.addEventListener("click", () => {
+    window.sessionStorage.removeItem("token");
+  });
+  const modifBouton = document.querySelector(".modifier-btn");
+  modifBouton.classList.toggle("hidden");
+  const filtres = document.querySelector(".filtres");
+  filtres.setAttribute("class", "hidden");
+};
+
+const token = window.sessionStorage.getItem("token");
+if (token) {
+  adminPage();
+} else {
+  console.log("No token");
 }
