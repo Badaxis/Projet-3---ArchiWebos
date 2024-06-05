@@ -1,13 +1,13 @@
 const form = document.querySelector("#login-form");
-form.addEventListener("submit", async event => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const email = document.querySelector("#email").value;
   const password = document.querySelector(["#pwd"]).value;
-  const pwdErr = document.querySelector("#pwd-error");
-  pwdErr.textContent = "";
   const emailErr = document.querySelector("#email-error");
-  emailErr.textContent = "";
+  const pwdErr = document.querySelector("#pwd-error");
+  emailErr.classList.add("hidden");
+  pwdErr.classList.add("hidden");
 
   const reponse = await fetch("http://localhost:5678/api/users/login", {
     method: "POST",
@@ -16,15 +16,14 @@ form.addEventListener("submit", async event => {
   });
 
   const result = await reponse.json();
-
   if (reponse.ok) {
     window.sessionStorage.setItem("token", result.token);
     window.location.href = "./index.html";
   } else {
-    if (reponse.status === 401) {
-      pwdErr.textContent = "Mot de passe incorrect";
+    if (reponse.status === 404) {
+      emailErr.classList.remove("hidden");
     } else {
-      emailErr.textContent = "Utilisateur inconnu";
+      pwdErr.classList.remove("hidden");
     }
   }
 });

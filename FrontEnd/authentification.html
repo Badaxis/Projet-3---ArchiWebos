@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="./assets/style.css">
   <script src="./login.js" defer></script>
 </head>
@@ -17,15 +20,13 @@
 <body>
   <div class="container">
     <header>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <h1>Sophie Bluel <span>ARCHITECTE D'INTÉRIEUR</span></h1>
       <nav>
         <ul>
-          <a href="./index.html">
-            <li>projets</li>
-          </a>
+          <li><a href="./index.html">projets</a></li>
           <li>contact</li>
           <li class="current-page">login</li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+          <li><i class="fa-brands fa-instagram fa-xl"></i></li>
         </ul>
       </nav>
     </header>
@@ -34,11 +35,17 @@
         <h2>Log In</h2>
         <form id="login-form">
           <label for="email">E-mail</label>
-          <input type="email" name="email" id="email">
-          <div class="error" id="email-error"></div>
+          <input type="email" name="email" id="email" required>
+          <p class="error-cred hidden" id="email-error">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Utilisateur inconnu
+          </p>
           <label for="pwd">Mot de passe</label>
-          <input type="password" name="pwd" id="pwd">
-          <div class="error" id="pwd-error"></div>
+          <input type="password" name="pwd" id="pwd" required>
+          <p class="error-cred hidden" id="pwd-error">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Mot de passe incorrect
+          </p>
           <input type="submit" value="Se connecter">
           <div class="mdp-oublie">
             <a href="#">Mot de passe oublié</a>
